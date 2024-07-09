@@ -2,12 +2,13 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { set, z } from "zod"
+import { z } from "zod"
 import { Form } from "@/components/ui/form"
 import CustomFormField from '../customFormField';
 import SubmitButton from "../SubmitButton"
-import { useState } from "react"
+import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation"
+import { CreateUser } from "@/lib/actions/patient.actions"
 import { useRouter } from "next/navigation"
 
 export enum FormFieldTypes {
@@ -37,13 +38,18 @@ const PatientForm = () => {
         setIsLoading(true)
 
         try {
-            // const userData = { name, email, phone };
-            // const user = await CreateUser(userData);
+            const userData = { name, email, phone };
+            const user = await CreateUser(userData);
 
-            // if (user) router.push(`/patients/${user.id}/register`)
+            if (user) {
+                router.push(`/patient/${user.$id}/register`)
+            }
         } catch (error) {
             console.log(error);
         }
+
+        setIsLoading(false)
+
     }
     return (
         <Form {...form}>

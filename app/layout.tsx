@@ -11,7 +11,7 @@ const fontSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "CreaPulse",
+  title: "CarePulse",
   description: "A health management app for the modern age.",
 };
 
